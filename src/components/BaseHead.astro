@@ -35,8 +35,9 @@ const { title, description } = Astro.props;
 <meta property="og:description" content={description} />
 
 <script is:inline>
-	const theme = localStorage.getItem('theme');
-	if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-		document.documentElement.classList.add('dark');
-	}
+	(function() {
+		const theme = localStorage.getItem('theme') || 'system';
+		const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+		document.documentElement.classList.toggle('dark', isDark);
+	})();
 </script>
