@@ -9,10 +9,10 @@ import ThemeToggle from './ThemeToggle.tsx';
 			{SITE_TITLE}
 		</a>
 		<div class="flex items-center gap-4">
-			<a href={`${import.meta.env.BASE_URL}tags/`} class="text-sm text-[var(--color-muted)] hover:text-[var(--color-text)] no-underline transition-colors">
+			<a href={`${import.meta.env.BASE_URL}/tags/`} class="text-sm text-[var(--color-muted)] hover:text-[var(--color-text)] no-underline transition-colors">
 				Tags
 			</a>
-			<a href={`${import.meta.env.BASE_URL}search/`} class="text-sm text-[var(--color-muted)] hover:text-[var(--color-text)] no-underline transition-colors">
+			<a href={`${import.meta.env.BASE_URL}/search/`} class="text-sm text-[var(--color-muted)] hover:text-[var(--color-text)] no-underline transition-colors">
 				Search
 			</a>
 			<ThemeToggle client:load />
