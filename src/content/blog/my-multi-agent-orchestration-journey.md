@@ -6,9 +6,11 @@ tags: ["ai", "agents", "orchestration", "automation"]
 draft: false
 ---
 
-I want to take some time to reflect on my journey building my "agentic army" as JKD kindly named it, a 40k lines of code agent orchestration tool just for me. It runs deterministic agentic workflows, which I use to create PRs from Jira tickets for me in the background.
+I want to take some time to reflect on my journey building my "agentic army" as my college JKD kindly named it, a 40k lines of code agent orchestration tool just for me. It runs deterministic agentic workflows, which I use to create PRs from Jira tickets for me in the background.
 
-TLDR;
+![Screenshot of my custom agent orchestration](../../images/pi-automation-screenshot.png)
+
+## TLDR;
 
 Ask your agent to summarize this blog in X number of words.
 
@@ -31,7 +33,7 @@ This is proved again after spending many hours and token dollars debugging the A
 There is a reason our job title is engineer not coder, writing code could be achieved now by a ten-year-old but they will have no idea to keep it running over time. A few meaningful questions I'd ask myself by now:
 
 - Is there long term commitment to maintain the code and keep them running? Creating net new code is always simple but may become garbage and debt for the business in the long run if not being maintained correctly.
-- Have you *actually* budgeted amount of maintenance into your day to day workload? Your team's net new feature delivery throughput should be decreasing over time to compensate amount of integration and maintenance, otherwise you're just lying to yourself about generating business value with "new" features.
+- Have you _actually_ budgeted amount of maintenance into your day to day workload? Your team's net new feature delivery throughput should be decreasing over time to compensate amount of integration and maintenance, otherwise you're just lying to yourself about generating business value with "new" features.
 
 ### #3 Automatable and Verifiable
 
@@ -101,6 +103,8 @@ Fortunately, Atlassian products give us Personal Access Token to make REST API c
 > What's the latest build status of this PR?
 
 For Teams notification, the easiest way I found is by creating a webhook using Teams workflow, with Microsoft Power Automate behind the scene and a few tweaks to make it sending message to myself.
+
+![Teams notification asking me to review PRs](../../images/teams-notification-pr-ready.png)
 
 My Jenkins integration was using similar approach with access token, as of today, you could also enable first-party MCP support from Jenkins.
 
