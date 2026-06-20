@@ -9,9 +9,10 @@ interface Props {
 	pubDate: Date;
 	updatedDate?: Date;
 	tags: string[];
+	readingTime: number;
 }
 
-const { title, description, pubDate, updatedDate, tags } = Astro.props;
+const { title, description, pubDate, updatedDate, tags, readingTime } = Astro.props;
 const dateStr = pubDate.toLocaleDateString('en-us', {
 	year: 'numeric',
 	month: 'long',
@@ -31,6 +32,8 @@ const dateStr = pubDate.toLocaleDateString('en-us', {
 					<h1 class="text-3xl font-bold leading-tight text-[var(--color-text)]">{title}</h1>
 					<div class="mt-3 flex flex-wrap items-center gap-3 text-sm text-[var(--color-muted)]">
 						<time>{dateStr}</time>
+						<span>·</span>
+						<span>{readingTime} min read</span>
 						{updatedDate && (
 							<span class="italic">
 								(Updated {updatedDate.toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })})
