@@ -217,12 +217,3 @@ My time now is bounded by two different type of things -- writing good quality J
 Without a custom app, VS Code agents window (or similar) gives me the hope that I will be able to do a lot of the workflows without custom setup, which supports out-of-box parallel git worktree and all other standard agent features in a nice UI interface.
 
 Sorry, I'm not going to share the repo code because it's not production ready for others to use, and I know I don't have the time to maintain it by offering support and answering questions. So I hope to use this blog post to share some of my learnings and inspire you with some new ideas. I'm always happy to talk about these and brainstorm, so feel free to reach out and have a coffee chat.
-
----
-
-## References
-
-There are tons of useful links and materials out there:
-
-- OpenAI's Symphony spec: https://github.com/openai/symphony
-- Hermes agent with built-in learning: https://hermes-agent.nousresearch.com/
