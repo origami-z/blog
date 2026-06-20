@@ -1,0 +1,54 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import PostCard from '../../components/PostCard.astro';
+import TagFilter from '../../components/TagFilter.tsx';
+import { SITE_TITLE } from '../../consts';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog', ({ data }) => !data.draft);
+	const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
+	return tags.map((tag) => ({
+		params: { tag },
+		props: {
+			posts: posts
+				.filter((p) => p.data.tags.includes(tag))
+				.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+			tag,
+			allTags: tags.sort(),
+		},
+	}));
+}
+
+const { posts, tag, allTags } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`#${tag} — ${SITE_TITLE}`} description={`Posts tagged with "${tag}"`} />
+	</head>
+	<body class="min-h-screen bg-[var(--color-bg)]">
+		<Header />
+		<main class="mx-auto max-w-[680px] px-4 py-10">
+			<h1 class="text-2xl font-bold text-[var(--color-text)] mb-6">#{tag}</h1>
+			<section class="mb-8">
+				<TagFilter allTags={allTags} currentTag={tag} basePath={import.meta.env.BASE_URL} client:load />
+			</section>
+			<section>
+				{posts.map((post) => (
+					<PostCard
+						title={post.data.title}
+						description={post.data.description}
+						pubDate={post.data.pubDate}
+						tags={post.data.tags}
+						slug={post.id}
+					/>
+				))}
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

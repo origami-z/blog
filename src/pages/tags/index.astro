@@ -1,0 +1,40 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const tagCounts = new Map<string, number>();
+posts.forEach((post) => {
+	post.data.tags.forEach((tag) => {
+		tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+	});
+});
+const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Tags — ${SITE_TITLE}`} description="Browse all tags" />
+	</head>
+	<body class="min-h-screen bg-[var(--color-bg)]">
+		<Header />
+		<main class="mx-auto max-w-[680px] px-4 py-10">
+			<h1 class="text-2xl font-bold text-[var(--color-text)] mb-6">Tags</h1>
+			<div class="flex flex-wrap gap-2">
+				{sortedTags.map(([tag, count]) => (
+					<a
+						href={`${import.meta.env.BASE_URL}tags/${tag}/`}
+						class="rounded-full bg-[var(--color-border)] px-3 py-1 text-sm text-[var(--color-muted)] no-underline hover:text-[var(--color-text)] transition-colors"
+					>
+						{tag} ({count})
+					</a>
+				))}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
