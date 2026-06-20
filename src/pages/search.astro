@@ -9,7 +9,7 @@ import { SITE_TITLE } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={`Search — ${SITE_TITLE}`} description="Search all posts" />
-		<link rel="stylesheet" href={`${import.meta.env.BASE_URL}pagefind/pagefind-ui.css`} />
+		<link rel="stylesheet" href={`${import.meta.env.BASE_URL}/pagefind/pagefind-ui.css`} />
 	</head>
 	<body class="min-h-screen bg-[var(--color-bg)]">
 		<Header />
@@ -20,7 +20,7 @@ import { SITE_TITLE } from '../consts';
 		<Footer />
 		<script is:inline define:vars={{ basePath: import.meta.env.BASE_URL }}>
 			window.addEventListener('DOMContentLoaded', () => {
-				const pagefindPath = basePath + 'pagefind/pagefind-ui.js';
+				const pagefindPath = basePath + '/pagefind/pagefind-ui.js';
 				import(pagefindPath).then((module) => {
 					new module.PagefindUI({ element: '#search', showImages: false, baseUrl: basePath });
 				});
